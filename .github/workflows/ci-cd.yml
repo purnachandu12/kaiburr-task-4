@@ -10,7 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    # Start a MongoDB service container
     services:
       mongo:
         image: mongo:6
@@ -23,50 +22,33 @@ jobs:
           --health-retries 5
 
     env:
-      # Use the service hostname "mongo", not localhost
+      # GitHub Actions MongoDB service hostname
       SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/taskdb
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Cache Maven dependencies
-        uses: actions/cache@v4
+      - uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Build with Maven
-        run: mvn -B clean package -DskipTests
+      - run: mvn -B clean package -DskipTests
 
-      - name: Build Docker image
-        run: docker build -t kaiburr-task-api:latest .
+      - run: docker build -t kaiburr-task-api:latest .
 
-      - name: Test Docker container connection to MongoDB (optional)
-        run: |
-          docker run -d --name test-app \
-            -e SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/taskdb \
-            --network host \
-            kaiburr-task-api:latest || true
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v3
+      - uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Tag and push image to DockerHub
-        run: |
+      - run: |
           docker tag kaiburr-task-api:latest ${{ secrets.DOCKERHUB_USERNAME }}/kaiburr-task-api:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/kaiburr-task-api:latest
-
-      - name: Verify pushed image (optional)
-        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/kaiburr-task-api:latest
