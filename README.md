@@ -22,8 +22,8 @@ This task demonstrates a **CI/CD pipeline** for the sample application (built in
 
 | **File**     | **Description**                                          | **Screenshot**                               |
 | ------------ | -------------------------------------------------------- | -------------------------------------------- |
-| `ci-cd.yml`  | GitHub Actions workflow file defining the CI/CD pipeline | ![CI-CD Workflow](screenshots/ci-cd-yml.png) |
-| `Dockerfile` | Dockerfile to build the application image                | ![Dockerfile](screenshots/dockerfile.png)    |
+| `ci-cd.yml`  | GitHub Actions workflow file defining the CI/CD pipeline | ![CI-CD Workflow](https://github.com/purnachandu12/kaiburr-task-4/blob/main/ci-cd.png) |
+| `Dockerfile` | Dockerfile to build the application image                | ![Dockerfile](https://github.com/purnachandu12/kaiburr-task-4/blob/main/Docker%20File.png)    |
 
 ---
 
@@ -31,10 +31,10 @@ This task demonstrates a **CI/CD pipeline** for the sample application (built in
 
 | **Step**                   | **Description**                                                                           | **Screenshot**                                            |
 | -------------------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| GitHub Actions Run         | Shows pipeline execution in GitHub Actions, including build, test, and Docker build steps | ![GitHub Actions Run](screenshots/github-actions-run.png) |
-| Docker Image on Docker Hub | Shows the Docker image successfully pushed to Docker Hub with tag `latest`                | ![Docker Hub Image](screenshots/dockerhub-image.png)      |
+| GitHub Actions Run         | Shows pipeline execution in GitHub Actions, including build, test, and Docker build steps | ![GitHub Actions Run](https://github.com/purnachandu12/kaiburr-task-4/blob/main/git.png) |
+| Docker Image on Docker Hub | Shows the Docker image successfully pushed to Docker Hub with tag `latest`                | ![Docker Hub Image](https://github.com/purnachandu12/kaiburr-task-4/blob/main/Docker%20image.png)      |
 
-> ✅ All screenshots include **my name and current date/time** for authenticity.
+> All screenshots include **my name and current date/time** for authenticity.
 
 ---
 
